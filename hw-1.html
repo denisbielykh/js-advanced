@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dz</title>
+</head>
+
+<body>
+    <ul id="list"><li class="list__item">item1</li><li class="list__item">item2</li><li class="list__item">item3</li></ul>
+    <button type="button" onclick="chooseFirstElement()">Выбрать первый элемент</button><br>
+    <button type="button" onclick="chooseLastElement()">Выбрать последний элемент</button><br>
+    <button type="button" onclick="chooseNextElement()">Выбрать следующий элемент</button><br>
+    <button type="button" onclick="choosePreviousElement()">Выбрать предыдущий элемент</button><br>
+    <button type="button" onclick="addElement()">Добавить элемент</button><br>
+    <button type="button" onclick="deleteElement()">Удалить элемент</button><br>
+    <button type="button" onclick="addFirstElement()">Добавить в начало</button><br>
+    <script>
+        var lastActiveElementId = 0;
+        function chooseFirstElement() {
+            var list = document.getElementById('list');
+            list.firstChild.style.color = 'red';
+            list.firstChild.id = `active${++lastActiveElementId}`
+            return lastActiveElementId;
+        };
+        function chooseLastElement() {
+            var list = document.getElementById('list');
+            list.lastChild.style.color = 'red';
+            list.lastChild.id = `active${++lastActiveElementId}`;
+            return lastActiveElementId;
+        };
+        function chooseNextElement() {
+            var list = document.getElementById('list');
+            var activeElement = document.getElementById(`active${lastActiveElementId}`);
+            var listLi = list.getElementsByTagName('li');
+            for(elem of listLi) {
+                elem.style.color = 'black';
+            }
+            if(list.lastChild.id === activeElement.id) {                
+                list.firstChild.style.color = 'red';
+                list.firstChild.id = `active${++lastActiveElementId}`;
+            } else if(list.lastChild.id !== activeElement.id){                
+                activeElement = activeElement.nextSibling;
+                activeElement.style.color = 'red';
+                activeElement.id = `active${++lastActiveElementId}`;
+            }            
+            return LastActiveElementId;
+        };
+        function choosePreviousElement() {
+            var list = document.getElementById('list');
+            var activeElement = document.getElementById(`active${lastActiveElementId}`);
+            var listLi = list.getElementsByTagName('li');
+            for(elem of listLi) {
+                elem.style.color = 'black';
+            }
+            if(list.firstChild.id === activeElement.id) {                
+                list.lastChild.style.color = 'red';
+                list.lastChild.id = `active${++lastActiveElementId}`;
+            } else if(list.firstChild.id !== activeElement.id){                
+                activeElement = activeElement.previousSibling;
+                activeElement.style.color = 'red';
+                activeElement.id = `active${++lastActiveElementId}`;
+            }            
+            return LastActiveElementId;
+        };
+        function addElement() {
+            var list = document.getElementById('list');
+            var newElement = document.createElement('li');
+            newElement.innerHTML = 'new item';
+            list.appendChild(newElement);
+        };
+        function deleteElement() {
+            var list = document.getElementById('list');
+            list.removeChild(list.lastChild);
+        };
+        function addFirstElement() {
+            var list = document.getElementById('list');
+            var newElement = document.createElement('li');
+            newElement.innerHTML = 'new item';
+            list.insertBefore(newElement, list.firstChild);
+        };
+    </script>
+    <!-- elementsNamedX[i].style.display = 'none'; -->
+</body>
+
+</html>
