@@ -9,7 +9,11 @@
 </head>
 
 <body>
-    <ul id="list"><li class="list__item">item1</li><li class="list__item">item2</li><li class="list__item">item3</li></ul>
+    <ul id="list">
+        <li class="list__item">item1</li>
+        <li class="list__item">item2</li>
+        <li class="list__item">item3</li>
+    </ul>
     <button type="button" onclick="chooseFirstElement()">Выбрать первый элемент</button><br>
     <button type="button" onclick="chooseLastElement()">Выбрать последний элемент</button><br>
     <button type="button" onclick="chooseNextElement()">Выбрать следующий элемент</button><br>
@@ -18,71 +22,77 @@
     <button type="button" onclick="deleteElement()">Удалить элемент</button><br>
     <button type="button" onclick="addFirstElement()">Добавить в начало</button><br>
     <script>
+    //    list сделал глобальной , потому что в этом задании ее область видимости ни на что не повлияет, по моему мнению
+        var list = document.getElementById('list');
         var lastActiveElementId = 0;
+         //********Убирает текстовые узлы в list*****************
+        (function () {            
+            var listChildren = list.childNodes;
+            for (var i = 0; i < listChildren.length; i++) {
+                var child = listChildren[i];
+                if (child.nodeType === 3) {
+                    list.removeChild(child);
+                }
+            }
+        })();        
         function chooseFirstElement() {
-            var list = document.getElementById('list');
+            setDefaultColor()
             list.firstChild.style.color = 'red';
             list.firstChild.id = `active${++lastActiveElementId}`
             return lastActiveElementId;
         };
         function chooseLastElement() {
-            var list = document.getElementById('list');
+            setDefaultColor()
             list.lastChild.style.color = 'red';
             list.lastChild.id = `active${++lastActiveElementId}`;
             return lastActiveElementId;
         };
         function chooseNextElement() {
-            var list = document.getElementById('list');
             var activeElement = document.getElementById(`active${lastActiveElementId}`);
-            var listLi = list.getElementsByTagName('li');
-            for(elem of listLi) {
-                elem.style.color = 'black';
-            }
-            if(list.lastChild.id === activeElement.id) {                
+            setDefaultColor()
+            if (list.lastChild.id === activeElement.id) {
                 list.firstChild.style.color = 'red';
                 list.firstChild.id = `active${++lastActiveElementId}`;
-            } else if(list.lastChild.id !== activeElement.id){                
+            } else if (list.lastChild.id !== activeElement.id) {
                 activeElement = activeElement.nextSibling;
                 activeElement.style.color = 'red';
                 activeElement.id = `active${++lastActiveElementId}`;
-            }            
+            }
             return LastActiveElementId;
         };
         function choosePreviousElement() {
-            var list = document.getElementById('list');
             var activeElement = document.getElementById(`active${lastActiveElementId}`);
-            var listLi = list.getElementsByTagName('li');
-            for(elem of listLi) {
-                elem.style.color = 'black';
-            }
-            if(list.firstChild.id === activeElement.id) {                
+            setDefaultColor();
+            if (list.firstChild.id === activeElement.id) {
                 list.lastChild.style.color = 'red';
                 list.lastChild.id = `active${++lastActiveElementId}`;
-            } else if(list.firstChild.id !== activeElement.id){                
+            } else if (list.firstChild.id !== activeElement.id) {
                 activeElement = activeElement.previousSibling;
                 activeElement.style.color = 'red';
                 activeElement.id = `active${++lastActiveElementId}`;
-            }            
+            }
             return LastActiveElementId;
         };
+        function setDefaultColor() {
+            var listLi = list.getElementsByTagName('li');
+            for (elem of listLi) {
+                elem.style.color = 'black';
+            }
+        }        
         function addElement() {
-            var list = document.getElementById('list');
             var newElement = document.createElement('li');
             newElement.innerHTML = 'new item';
             list.appendChild(newElement);
         };
         function deleteElement() {
-            var list = document.getElementById('list');
             list.removeChild(list.lastChild);
         };
         function addFirstElement() {
-            var list = document.getElementById('list');
             var newElement = document.createElement('li');
             newElement.innerHTML = 'new item';
             list.insertBefore(newElement, list.firstChild);
         };
     </script>
-    <!-- elementsNamedX[i].style.display = 'none'; -->
 </body>
 
 </html>
