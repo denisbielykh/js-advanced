@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Classwork</title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div id="one">one</div>
+    <script>
+        divIdOne = document.querySelector('div');
+        divToAdd = divIdOne.cloneNode(true);
+        divToAdd.id = 'two';
+        divToAdd.innerText = 'two';
+        divIdOne.insertAdjacentElement('beforebegin', divToAdd);
+
+        divToAdd.onclick = addElementAndChangeId;
+        function addElementAndChangeId() {
+            divTwoFirst = divIdOne.cloneNode(true);
+            divTwoFirst.id = 'two_first';
+            divTwoFirst.innerText = 'two_first';
+            divToAdd.insertAdjacentElement('beforebegin', divTwoFirst);
+            divToAdd.id = 'two_second';
+            // для наглядности
+            divToAdd.innerText = ' был two, стал two_second';
+        }
+    // Добавьте после дива с id=one еще один див с текстом two и id=two
+    // На клик по id=two добавьте перед ним див с id - two_first, а див с id=two измените на two_second 
+    </script>
+</body>
+
+</html>
