@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <input type="textarea" id="userText">
+        <input type="button" id="createList" value="Create list">
+        <input type="button" id="showAmountOfA" value="Show amount of 'a'">
+    </form>
+    <ul id="list"></ul>
+    <script>
+        var userText = document.querySelector('#userText');
+        var createList = document.querySelector('#createList');
+        var showAmountOfA = document.querySelector('#showAmountOfA');
+        var list = document.querySelector('#list');
+        var userTextValue;
+
+        createList.onclick = saveDataCreateListShowList;
+        showAmountOfA.onclick = showAmountOfSomeChar;
+
+        function saveDataCreateListShowList() {
+            if (userText.value !== '') {
+                userTextValue = userText.value;
+                var userTextArray = userTextValue.split(' ');
+                for (var i = 0; i < userTextArray.length; i++) {
+                    var itemToAdd;
+                    if (i === 0) {
+                        itemToAdd = userTextArray[i].toUpperCase();
+                    } else if (i === userTextArray.length - 1 || i === userTextArray.length - 2) {
+                        itemToAdd = userTextArray[i].toLowerCase();
+                    } else {
+                        itemToAdd = userTextArray[i];
+                    }
+                    var userTextArrayElement = `<li>${itemToAdd}</li>`;
+                    list.insertAdjacentHTML('beforeend', userTextArrayElement);
+                };
+            } else {
+                alert('пустая строка!');
+            };
+        };
+        function showAmountOfSomeChar() {
+            var patt = /a/g;
+            var amountOfChar = userTextValue.match(patt);
+            alert(amountOfChar.length);
+        }
+    </script>
+</body>
+
+</html>
