@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ключевое слово this</title>
+    <style>
+        div {
+            background-color:green;
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        var divArr = document.getElementsByTagName("div");
+        var randomBgColor;
+
+        for (elem of divArr) {
+            elem.onmouseover = changeBgColor;
+        };
+        
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        };
+        function getRandomRGB() {
+            var r = getRandomInt(255);
+            var g = getRandomInt(255);
+            var b = getRandomInt(255);
+            randomBgColor = `rgb(${r},${g},${b})`;
+        }
+        function changeBgColor() {
+            getRandomRGB();
+            this.style.backgroundColor = `${randomBgColor}`;
+        }
+    </script>
+
+</body>
+</html>

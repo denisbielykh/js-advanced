@@ -1,0 +1,82 @@
+<!-- Напишите регулярные выражения, которые будут выбирать 
+    индекс - 55535 - 5 numbers
+    ip адресс, пример 255.255.255.255
+    цены в долларах - $0.84, $1232.84, $4
+    дата в виде - 30/12/2016 - день, месяц, год
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <style>
+        p {
+            font-weight: 500;
+            font-size: 20px;
+            border: 1px solid black;
+            min-height: 30px;
+            background-color: honeydew;
+        }
+        input {
+            height: 40px;
+            min-width: 50px;
+            border-radius: 10px;
+            background-color: aquamarine;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        input:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        Lorem ipsum 255.255.255.255 dolor sit $0.84, $1232.84, $4 amet 55555 consectetur 30/12/2016 adipisicing elit.
+        Fuga deserunt 48961 rerum atque vero soluta error illo, mollitia hic necessitatibus harum 33125 ipsam veniam!
+        Placeat cumque tempore voluptatibus velit quo quasi dolores.
+    </div>
+    <input type="button" id="index" value="Index">
+    <input type="button" id="ip" value="IP">
+    <input type="button" id="price" value="Price">
+    <input type="button" id="date" value="date">
+    <p id="p"></p>
+    <script>
+        var divText = document.querySelector('div').innerHTML;
+        var index = document.querySelector('#index');
+        var ip = document.querySelector('#ip');
+        var price = document.querySelector('#price');
+        var date = document.querySelector('#date');
+        var p = document.querySelector('#p');
+
+        index.onclick = findAndShowIndex;
+        ip.onclick = findAndShowIp;
+        price.onclick = findAndShowPrice;
+        date.onclick = findAndShowDate;
+
+        function findAndShowIndex() {
+            var patt = /\d{5}/;
+            p.innerHTML = divText.match(patt);
+        };
+        function findAndShowIp() {
+            var patt = /\d{3}\.\d{3}\.\d{3}\.\d{3}/;
+            p.innerHTML = divText.match(patt);
+        };
+        function findAndShowPrice() {
+            var patt = /\$\d{1,}(\.\d{1,2})?/g;
+            var res = divText.match(patt);
+            p.innerHTML = res.join(', ');
+        };
+        function findAndShowDate() {
+            var patt = /\d{2}\/\d{2}\/\d{4}/;
+            p.innerHTML = divText.match(patt);
+        };
+    </script>
+</body>
+
+</html>
