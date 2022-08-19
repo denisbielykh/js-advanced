@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Ключевое слово this</title>
     <style>
         div {
-            background-color:green;
+            background-color: green;
             display: inline-block;
+            vertical-align: top;
             height: 100px;
             width: 100px;
             margin: 10px;
+            padding: 10px;
         }
     </style>
 </head>
+
 <body>
+    <p>Что бы сработал window.onbeforeunload нужно кликнуть на странице, я хз пока почему так работает, разбираюсь, пока думаю что при клике у нас как бы появляются несохранённые данные, и поэтому срабатывает </p>
     <div></div>
     <div></div>
     <div></div>
@@ -23,9 +28,9 @@
         var randomBgColor;
 
         for (elem of divArr) {
-            elem.onmouseover = changeBgColor;
+            elem.onmouseover = changeBgColorAndShowRGB;
         };
-        
+
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
         };
@@ -34,12 +39,19 @@
             var g = getRandomInt(255);
             var b = getRandomInt(255);
             randomBgColor = `rgb(${r},${g},${b})`;
-        }
-        function changeBgColor() {
+        };
+        function changeBgColorAndShowRGB() {
             getRandomRGB();
             this.style.backgroundColor = `${randomBgColor}`;
-        }
-    </script>
+            this.innerHTML = this.style.backgroundColor;
+        };
+        (function() {
+            window.onbeforeunload = function () {
+                return "Есть несохранённые изменения. Всё равно уходим?";
+            };
+        })();
 
+    </script>
 </body>
+
 </html>
