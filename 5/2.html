@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <style>
+        body {
+            display: flex;
+        }
+
+        div {
+            border: 1px solid black;
+            background-color: honeydew;
+            padding: 15px;
+            width: 15%;
+            margin-right: 25px;
+        }
+
+        button {
+            width: 100%;
+            height: 40px;
+            background-color: palegreen;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+    1. Создайте 5 блоков с текстом. Добавьте в каждый из блоков кнопку для его удаления.
+    Используйте только один обработчик.
+
+    2. Доработайте пример 004_Attr_Tech.html таким образом, чтобы при наведении на span элементы,
+    подсказка сплыва под ними, а не в модальном окне. Используйте addEventListener -->
+
+    <div>
+        <p>
+            1
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. A cupiditate, illo molestias molestiae consequuntur
+            numquam adipisci soluta minima reprehenderit dolor sint est, temporibus commodi ullam ut ratione. Tempore,
+            ea aperiam?
+        </p>
+        <button>Delete</button>
+    </div>
+    <div>
+        <p>
+            2
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. A cupiditate, illo molestias molestiae consequuntur
+            numquam adipisci soluta minima reprehenderit dolor sint est, temporibus commodi ullam ut ratione. Tempore,
+            ea aperiam?
+        </p>
+        <button>Delete</button>
+    </div>
+    <div>
+        <p>
+            3
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. A cupiditate, illo molestias molestiae consequuntur
+            numquam adipisci soluta minima reprehenderit dolor sint est, temporibus commodi ullam ut ratione. Tempore,
+            ea aperiam?
+        </p>
+        <button>Delete</button>
+    </div>
+    <div>
+        <p>
+            4
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. A cupiditate, illo molestias molestiae consequuntur
+            numquam adipisci soluta minima reprehenderit dolor sint est, temporibus commodi ullam ut ratione. Tempore,
+            ea aperiam?
+        </p>
+        <button>Delete</button>
+    </div>
+    <div>
+        <p>
+            5
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. A cupiditate, illo molestias molestiae consequuntur
+            numquam adipisci soluta minima reprehenderit dolor sint est, temporibus commodi ullam ut ratione. Tempore,
+            ea aperiam?
+        </p>
+        <button>Delete</button>
+    </div>
+    <script>
+        var body = document.querySelector('body');
+        body.addEventListener('click', hideDiv);
+        //*********1 способ********************
+        function hideDiv(event) {
+            if (event.target.tagName === 'BUTTON') {
+                event.target.parentNode.style.display = 'none';
+            };
+        };
+        //*********2 способ,лучшеподойдет если внутри баттона есть есть еще какой то тег********************
+        // function hideDiv(event) {
+        //     if (event.target.closest('button')) {
+        //         event.target.parentNode.style.display = 'none';
+        //     };
+        // };
+    </script>
+</body>
+
+</html>

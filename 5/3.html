@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        .tooltip {
+            position: fixed;
+            color: darkslategrey;
+            border: 1px silver solid;
+            box-shadow: 0 0 1px red;
+        };
+    </style>
+    <script>
+        window.onload = function () {
+            var mainDiv = document.getElementById("main-div");
+            var toggleIdElem;
+
+            mainDiv.addEventListener('mouseover', MyHandler);
+            mainDiv.addEventListener('mouseout', removeMyhandlerElem);
+
+            function MyHandler(e) {
+                var target = e.target;
+                toggleIdElem = target.getAttribute('data-tooltip');
+                if (!toggleIdElem) {
+                    return;
+                };
+                // создали элемент для подсказки
+                var elementToAdd = `<span>${toggleIdElem}</span>`;
+                mainDiv.insertAdjacentHTML('beforeend', elementToAdd);
+                lastElemInDiv = mainDiv.lastChild;
+                lastElemInDiv.classList.add('tooltip');
+                // создаем координаты 
+                var coords = target.getBoundingClientRect();
+                var left = Math.floor(coords.left);
+                var top = Math.floor(coords.bottom + 1);
+                lastElemInDiv.style.left = `${left}px`;
+                lastElemInDiv.style.top = `${top}px`;
+            };
+            function removeMyhandlerElem() {
+                if (toggleIdElem) {
+                    mainDiv.lastChild.remove();
+                };
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <div id="main-div">
+        <span data-tooltip="наведите">наведите</span>
+        <span data-tooltip="для">для</span>
+        <span data-tooltip="подсказки">подсказки</span>
+    </div>
+</body>
+
+</html>
