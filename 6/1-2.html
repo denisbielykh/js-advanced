@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>HomeWork</title>
+	<style>
+		body {
+			background-color: darkslategrey;
+		}
+
+		div {
+			width: 100px;
+			height: 100px;
+			background-color: orange;
+			border-radius: 7px;
+		}
+
+		#second-div {
+			background-color: chocolate;
+		}
+
+		section {
+			height: 110px;
+		}
+
+		button {
+			position: absolute;
+			top: 230px;
+			width: 100px;
+			height: 40px;
+			background-color: purple;
+			color: white;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 
+	1. drag and drop;
+	2. создайте div, при клике на него, div начинает двигаться вправо, при клике на кнопку - останавливается,
+	при попадании div к краю окна, он переходит к началу окна.
+	-->
+	<section>
+		<div id="first-div"></div>
+	</section>
+	<div id="second-div"></div>
+	<button id="stop">Stop</button>
+	<script>
+		var div = document.querySelector('#first-div');
+		var secondDiv = document.querySelector('#second-div');
+		var stopBtn = document.querySelector('#stop');
+		var flag;
+		div.addEventListener('mousedown', function (e) {
+			div.style.position = 'absolute';
+			cursorXInDiv = e.pageX - div.getBoundingClientRect().left;
+			cursorYInDiv = e.pageY - div.getBoundingClientRect().top
+			function moveAt(e) {
+				div.style.top = e.pageY - cursorYInDiv + 'px';
+				div.style.left = e.pageX - cursorXInDiv + 'px';
+			};
+			document.onmousemove = function (e) {
+				moveAt(e);
+			};
+			div.onmouseup = function () {
+				document.onmousemove = null;
+			};
+		});
+		
+		secondDiv.addEventListener('click', function () {
+			var screenWidthValue = document.documentElement.clientWidth;			
+			secondDiv.style.position = 'absolute';
+			flag = true;
+			interval = function () {
+				setInterval(
+					function () {
+						if (flag) {
+							var divRightCoord = secondDiv.getBoundingClientRect().right;
+							var divLeftCoord = secondDiv.getBoundingClientRect().left;
+							var newLeft = divLeftCoord + 2 + 'px';
+							if (divRightCoord === screenWidthValue) {
+								secondDiv.style.left = '0';
+							} else {
+								secondDiv.style.left = newLeft;
+							};
+						} else {
+							clearInterval(interval);
+						};
+					}, 1
+				);
+			};
+			interval();
+		}, { once: true });
+		stopBtn.addEventListener('click', function () {
+			flag = false;
+		});
+	</script>
+</body>
+
+</html>
