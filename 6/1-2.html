@@ -51,7 +51,7 @@
 		var div = document.querySelector('#first-div');
 		var secondDiv = document.querySelector('#second-div');
 		var stopBtn = document.querySelector('#stop');
-		var flag;
+
 		div.addEventListener('mousedown', function (e) {
 			div.style.position = 'absolute';
 			cursorXInDiv = e.pageX - div.getBoundingClientRect().left;
@@ -67,33 +67,28 @@
 				document.onmousemove = null;
 			};
 		});
-		
+
 		secondDiv.addEventListener('click', function () {
-			var screenWidthValue = document.documentElement.clientWidth;			
+			var screenWidthValue = document.documentElement.clientWidth;
 			secondDiv.style.position = 'absolute';
-			flag = true;
-			interval = function () {
-				setInterval(
+			startInterval();
+			function startInterval() {
+				interval = setInterval(
 					function () {
-						if (flag) {
-							var divRightCoord = secondDiv.getBoundingClientRect().right;
-							var divLeftCoord = secondDiv.getBoundingClientRect().left;
-							var newLeft = divLeftCoord + 2 + 'px';
-							if (divRightCoord === screenWidthValue) {
-								secondDiv.style.left = '0';
-							} else {
-								secondDiv.style.left = newLeft;
-							};
+						var divRightCoord = secondDiv.getBoundingClientRect().right;
+						var divLeftCoord = secondDiv.getBoundingClientRect().left;
+						var newLeft = divLeftCoord + 2 + 'px';
+						if (divRightCoord === screenWidthValue) {
+							secondDiv.style.left = '0';
 						} else {
-							clearInterval(interval);
+							secondDiv.style.left = newLeft;
 						};
 					}, 1
 				);
 			};
-			interval();
-		}, { once: true });
+		});
 		stopBtn.addEventListener('click', function () {
-			flag = false;
+			clearInterval(interval);
 		});
 	</script>
 </body>
