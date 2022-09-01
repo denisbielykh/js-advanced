@@ -26,7 +26,7 @@
     };
     function onsubmitHandler(event) {
         var formElemsArr = document.forms.form1.elements;
-        for (elem of formElemsArr) {
+        for (var elem of formElemsArr) {
             if (elem.type == "text" && (elem.className == "invalid" || elem.className == '')) {
                 alert("Допущены ошибки при заполнении формы.");
                 event.preventDefault();
