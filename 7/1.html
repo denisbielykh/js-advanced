@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-color: darkcyan;
+            font-size: 25px;
+        }
+        input {
+            height: 40px;
+            border-radius: 5px;
+            font-size: 17px;
+        } 
+        
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+</head>
+
+<body>
+    <p> формат записи 01/02/2022  /  Первый день недели как в США - ВС</p>
+    <form>
+        <input type="text" id="text">
+        <input type="button" id="btn" value="Show">
+    </form>
+    <p id="res">Result: </p>
+    <p id="full-date"></p>
+    <script>
+        var textInput = document.getElementById('text');
+        var btn = document.getElementById('btn');
+        var res = document.getElementById('res');
+        var fullDate = document.getElementById('full-date');
+
+        btn.addEventListener('click', showDayOfWeek);
+        function showDayOfWeek() {
+            fullDate.innerHTML = '';
+            res.innerHTML = 'Result: ';
+            var textInputVal = textInput.value;
+            var textArr = textInputVal.split('/');
+            var D = textArr[0];
+            var M = textArr[1] - 1;
+            var Y = textArr[2];
+            var date = new Date(Y, M, D);
+            var d = date.getDay() + 1;
+            fullDate.innerHTML = date;
+            res.innerHTML += `${d} day of week`;
+        };
+    </script>
+</body>
+
+</html>

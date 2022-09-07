@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2</title>
+</head>
+
+<body>
+    <script>
+        // ES - 6 DONE *************************************************************************************
+        class Man {
+            constructor(walk, eat, drink) {
+                this.walk = walk;
+                this.eat = eat;
+                this.drink = drink;
+            }
+            shoot() {
+                console.log('ShootMan!');
+            };
+        }
+        class Soldier extends Man {
+            constructor(walk, eat, drink) {
+                super(walk, eat, drink)
+            };
+            shoot() {
+                console.log('ShootSold!');
+            };
+        }
+        class Doctor extends Man {
+            constructor(walk, eat, drink) {
+                super(walk, eat, drink)
+            };
+            cure() {
+                console.log('Cure!');
+            };
+        }
+        let soldier_1 = new Soldier('10km', '4000kkal', 'water');
+        let doctor_1 = new Doctor('3km', '2500kkal', 'water');
+
+        // ES - 5 DONE *************************************************************************************
+        function Man(walk, eat, drink) {
+            this.walk = walk;
+            this.eat = eat;
+            this.drink = drink;
+        };
+        function Soldier() {
+            this.shoot = function () { console.log('Shoot!'); };
+        };
+        function Doctor() {
+            this.cure = function () { console.log('Cure!'); };
+        };
+
+        Soldier.prototype = new Man('25km', '4000 kсal', '4l');
+        Doctor.prototype = new Man('5km', '2000 kсal', '2l');
+
+        var soldier1 = new Soldier();
+        var doctor1 = new Doctor();
+    </script>
+</body>
+
+</html>

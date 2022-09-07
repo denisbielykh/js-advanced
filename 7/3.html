@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3</title>
+</head>
+
+<body>
+    <script>
+        // ES-5 ***********************************************************************
+
+        function MinistryOfHealth() {
+            this.cure = function () {
+                console.log('Cure - Ministry');
+            };
+        };
+        function Doctor(walk, eat, drink) {
+            this.walk = walk;
+            this.eat = eat;
+            this.drink = drink;
+            this.cure = function () {
+                console.log('Cure - Doctor');
+            };
+        };
+        function Dentist() {
+            this.cure = function () {
+                console.log('I reat teeth / Cure - Dentist');
+            };
+        };
+        function Surgeon() {
+            this.cure = function () {
+                console.log('Permorf operations / Cure - Surgeon');
+            };
+        };
+
+        Doctor.prototype = new MinistryOfHealth();
+        Dentist.prototype = new Doctor('3km', 'healthy food', 'water');
+        Surgeon.prototype = new Doctor('3km', 'healthy food', 'water');
+
+        var dentist = new Dentist();
+        var surgeon = new Surgeon();
+
+        console.dir(dentist);
+        console.dir(surgeon);
+
+        // ES-6 ****************************************************************************
+
+        // class MinistryOfHealth {
+        //     cure() { console.log('Cure - Ministry') };
+        // };
+        // class Doctor extends MinistryOfHealth {
+        //     constructor(walk, eat, drink) {
+        //         super();
+        //         this.walk = walk;
+        //         this.eat = eat;
+        //         this.drink = drink;
+        //     };
+        //     cure() {
+        //         console.log('Cure - Doctor');
+        //     };
+        // };
+        // class Dentist extends Doctor {
+        //     constructor(walk, eat, drink) {
+        //         super(walk, eat, drink);
+        //     };
+        //     cure() {
+        //         console.log('I reat teeth / Cure - Dentist');
+        //     };
+        // };
+        // class Surgeon extends Doctor {
+        //     constructor(walk, eat, drink) {
+        //         super(walk, eat, drink);
+        //     };
+        //     cure() {
+        //         console.log('Permorf operations / Cure - Surgeon');
+        //     };
+        // };
+
+        // let dentist = new Dentist('3km', 'healthy food', 'water');
+        // let surgeon = new Surgeon('3km', 'healthy food', 'water');
+        
+        // console.dir(dentist);
+        // console.dir(surgeon);
+    </script>
+</body>
+
+</html>
