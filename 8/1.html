@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Создайте страницу которая запрашивает имя пользователя, если пользователь вводит "Admin" либо "admin" он попадает на страницу,
+    которая оповещает его о том что " Пользоваетль Admin(не статическая строка, а данные что ввел пользователь) вошел в систему"
+    а рядом разместите кнопку "Выход" которая вернет пользователя к модальному окну ввода логина. Реализуйте код как для куки так и для localstorage. -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: darkcyan;
+            font-size: 25px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            height: 150px;
+            background: dimgray;
+            width: 250px;
+            padding-top: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px white;
+        }
+
+        input {
+            height: 30px;
+            border-radius: 5px;
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+
+        #log-in-btn,
+        #account input {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="log-in">
+        <input type="text" id="user-name">
+        <input type="button" value="Log-in" id="log-in-btn">
+    </form>
+    <form style="display: none;" id="account">
+        <p>Hello <span></span></p>
+        <input type="button" value="Log-out">
+    </form>
+    <script>
+        window.addEventListener('load', init);
+        function init() {
+            localStorage.setItem('user', 'admin');
+        };
+
+        var logInForm = document.querySelector('#log-in');
+        var accountForm = document.querySelector('#account');
+        var userNameInput = document.querySelector('#user-name');
+        var logInBtn = document.querySelector('#log-in-btn');
+        var logOutBtn = document.querySelector('#account input');
+        var greetingPar = document.querySelector('#account p');
+        var adminName = document.querySelector('#account p span');
+
+        logInBtn.addEventListener('click', logInFunc);
+        logOutBtn.addEventListener('click', logOutFunc);
+
+        function logInFunc() {
+            var userName = userNameInput.value.toLowerCase();
+            if (userName === localStorage.user) {
+                accountForm.style.display = 'flex';
+                logInForm.style.display = 'none';
+                adminName.innerHTML = userNameInput.value;
+                userNameInput.value = '';
+            } else {
+                alert('sorry, only admin can log-in');
+            };
+        };
+        function logOutFunc() {
+            accountForm.style.display = 'none';
+            logInForm.style.display = 'flex';
+            adminName.innerHTML = '';
+        };
+    </script>
+</body>
+
+</html>
