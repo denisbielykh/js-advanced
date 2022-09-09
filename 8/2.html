@@ -85,7 +85,7 @@
             var allCookies = document.cookie;
             var cookieName = 'user';
             var start = allCookies.indexOf(`${cookieName}=`) + cookieName.length + 1;
-            var end = allCookies.indexOf(';');
+            var end = allCookies.indexOf(';', start);
             if (end === -1) {
                 cookieNameValue = allCookies.substring(start);
             } else {
