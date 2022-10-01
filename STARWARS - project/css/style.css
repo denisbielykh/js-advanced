@@ -62,7 +62,7 @@ html {
 .heroes-container {
     display: flex;
     flex-direction: column;
-    min-width: 33.33%;
+    width: 425px;
     min-height: 510px;
     padding: 25px;
     margin: 0 auto;
