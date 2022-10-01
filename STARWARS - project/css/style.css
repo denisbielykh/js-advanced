@@ -192,6 +192,13 @@ html {
     font-size: 17px;
     letter-spacing: 0.1em;    
 }
+.films-list__item_undefined {
+    list-style: none;
+    font-size: ;
+    letter-spacing: 0.1em;    
+    color: var(--hero-list-value);
+    font-size: 27px;
+}
 .popup__btn {
     display: block;
     width: 200px;

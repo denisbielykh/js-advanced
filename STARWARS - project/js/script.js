@@ -183,13 +183,20 @@ function setFilms(arg) {
     clearFilmsList();
     let heroFilmsIdArr = getHeroFilmsIdArr(arg);
     let filmsList = document.querySelector('.films-list');
-    for (elem of heroFilmsIdArr) {
+    if (filmsArr.length === 1) {
         let itemToAdd = document.createElement('li');
-        itemToAdd.classList.add('films-list__item');
-        itemToAdd.innerHTML = `${filmsArr[elem]}`;
-
+        itemToAdd.classList.add('films-list__item_undefined');
+        itemToAdd.innerHTML = `${filmsArr[0]}`;
         filmsList.insertAdjacentElement('beforeend', itemToAdd);
-    };
+    } else {
+        for (elem of heroFilmsIdArr) {
+            let itemToAdd = document.createElement('li');
+            itemToAdd.classList.add('films-list__item');
+            itemToAdd.innerHTML = `${filmsArr[elem]}`;
+            console.log(filmsArr[elem])
+            filmsList.insertAdjacentElement('beforeend', itemToAdd);
+        };
+    }
 };
 function getHeroFilmsIdArr(arg) {
     let heroFilmsLinks = actualHeroesArr[arg].films;
