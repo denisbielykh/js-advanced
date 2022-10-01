@@ -185,6 +185,7 @@ html {
 }
 .films-list {
     width: 50%;
+    padding-top: 9px;
     list-style: disc;    
 }
 .films-list__item {    
