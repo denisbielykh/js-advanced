@@ -6,6 +6,7 @@ let nextBtnEventFlag = false;
 let unclickFlag = false;
 let init = { method: 'GET' };
 let filmsArr = new Array();
+let body = document.querySelector('.body');
 let heroesList = document.querySelector('.heroes-list');
 let prevBtn = document.querySelector('.btns__button_prev');
 let nextBtn = document.querySelector('.btns__button_next');
@@ -17,9 +18,9 @@ let popupCloseBtn = document.querySelector('.popup__btn');
 getAndSaveHeroes(activeHeroesPage);
 getFIlms();
 
-heroesList.addEventListener('click', showPopup);
-popupCloseBtn.addEventListener('click', closePopup);
-popup.addEventListener('click', closePopup);
+heroesList.addEventListener('click', openHeroInfoPopup);
+popupCloseBtn.addEventListener('click', closeHeroInfoPopup);
+popup.addEventListener('click', closeHeroInfoPopup);
 
 function getAndSaveHeroes(arg) {
     let url = `https://swapi.dev/api/people/?page=${arg}`;
@@ -72,7 +73,7 @@ function getFIlms() {
                 filmsArr.push(elem.title);
             };
         })
-        .catch(() => { filmsArr.push(`we don't know`) });
+        .catch(() => { console.log('films-response-error') });
 };
 function toogleNextBtnListenerAndClass(arg) {
     if ((arg === 1 || arg === (lastHeroesPage - 1)) && !nextBtnEventFlag) {
@@ -100,7 +101,7 @@ function clearHeroesListAndArr() {
     for (elem of heroesArr) { elem.remove() };
     actualHeroesArr.length = 0;
 };
-function showPopup(event) {
+function openHeroInfoPopup(event) {
     let target = event.target;
     if (target.tagName === 'BUTTON') {
         let id = event.target.id;
@@ -111,6 +112,7 @@ function showPopup(event) {
         getAndSetSpecies(id);
         setFilms(id);
         popup.classList.add('active');
+        body.classList.add('body__popup_open');
     };
 };
 function setName(arg) {
@@ -170,23 +172,24 @@ function getAndSetSpecies(arg) {
             .catch(() => { species.innerHTML = `we don't know` })
     }
 }
-function closePopup(event) {
+function closeHeroInfoPopup(event) {
     let target = event.target;
     if (
         target.tagName === 'BUTTON' ||
         target.tagName === 'SECTION'
     ) {
         popup.classList.remove('active');
+        body.classList.remove('body__popup_open');
     };
 };
 function setFilms(arg) {
     clearFilmsList();
     let heroFilmsIdArr = getHeroFilmsIdArr(arg);
     let filmsList = document.querySelector('.films-list');
-    if (filmsArr.length === 1) {
+    if (filmsArr.length === 0) {
         let itemToAdd = document.createElement('li');
         itemToAdd.classList.add('films-list__item_undefined');
-        itemToAdd.innerHTML = `${filmsArr[0]}`;
+        itemToAdd.innerHTML = `we don't know`;
         filmsList.insertAdjacentElement('beforeend', itemToAdd);
     } else {
         for (elem of heroFilmsIdArr) {
