@@ -62,7 +62,7 @@ html {
     display: flex;
     flex-direction: column;
     width: 425px;
-    min-height: 550px;
+    min-height: 530px;
     padding: 20px;
     margin: 0 auto;
     border: 5px solid var(--heroes-list-border);    
@@ -71,7 +71,7 @@ html {
     background-color: var(--heroes-list-bg);    
 }
 .heroes-container__header {
-    margin-bottom: 15px;   
+    margin-bottom: 13px;   
     font-size: 30px;
     letter-spacing: 0.13em;
     color: var(--heroes-header);
@@ -175,7 +175,7 @@ html {
 }
 .hero-list__item {
     display: flex;
-    margin-bottom: 11px;    
+    margin-bottom: 9px;    
 }
 .hero-list__subtitle {
     width: 50%;   
