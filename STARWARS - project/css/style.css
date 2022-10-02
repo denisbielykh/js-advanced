@@ -66,7 +66,7 @@ body.body__popup_open {
     display: flex;
     flex-direction: column;
     width: 425px;
-    min-height: 510px;
+    min-height: 530px;
     padding: 20px;
     margin: 0 auto;
     border: 5px solid var(--heroes-list-border);    
