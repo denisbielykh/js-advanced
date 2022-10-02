@@ -28,8 +28,11 @@ html {
     background-repeat: repeat repeat;
     height: 100%;
 }
+.main {
+    padding-bottom: 20px;
+}
 .wrapper {
-    max-width: 1310px;
+    max-width: 1030px;
     margin: 0 auto;
     padding: 0 15px;
     display: flex; 
@@ -49,22 +52,18 @@ html {
 .header {
     display: flex;
     justify-content: center;
-    padding: 22px 0;
-    margin-bottom: 35px;    
+    padding: 15px 0;
+    margin-bottom: 30px;    
 }
 .header img {  
-    max-height: 45px;
-}
-.main {
-    display: flex;
-    align-items: center;
+    max-height: 40px;
 }
 .heroes-container {
     display: flex;
     flex-direction: column;
     width: 425px;
-    min-height: 530px;
-    padding: 25px;
+    min-height: 550px;
+    padding: 20px;
     margin: 0 auto;
     border: 5px solid var(--heroes-list-border);    
     border-radius: 30px;
@@ -99,15 +98,16 @@ html {
     text-decoration: underline;
 }
 .btns {
-    display: flex;
+    display: flex;    
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
     margin-top: auto;
 }
 .btns__button {
+    display: block;
     padding: 8px;
-    min-width: 100px;
+    min-width: 105px;
     border: 3px solid var(--heroes-list-border);
     border-radius: 12px;
     box-shadow: 0 0 10px var(--white);
@@ -148,13 +148,19 @@ html {
     transition: all ease 350ms;
 }
 .popup__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 520px;
-    min-height: 400px;
     padding: 25px;
     border: 5px solid var(--light-blue);
     border-radius: 30px;
     box-shadow: 0 0 35px var(--light-blue);
     background-color: var(--popup-bg);  
+}
+.popup__info {
+    display: flex;
+    flex-direction: column;
 }
 .popup__header {
     margin-bottom: 15px;      
@@ -169,7 +175,7 @@ html {
 }
 .hero-list__item {
     display: flex;
-    margin-bottom: 7px;    
+    margin-bottom: 11px;    
 }
 .hero-list__subtitle {
     width: 50%;   
@@ -186,7 +192,7 @@ html {
 .films-list {
     width: 50%;
     padding-top: 9px;
-    list-style: disc;    
+    list-style: disc;
 }
 .films-list__item {    
     margin-bottom: 5px;
@@ -200,11 +206,10 @@ html {
     color: var(--hero-list-value);
     font-size: 27px;
 }
-.popup__btn {
-    display: block;
+.popup__btn {      
     width: 200px;
     height: 45px;    
-    margin: 50px auto 0 auto;
+    margin: 0 auto;
     border: 3px solid var(--light-blue);
     border-radius: 15px;
     background-color: transparent;
@@ -224,4 +229,120 @@ html {
 .popup.active {
     visibility: visible;
     opacity: 1;    
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 15px;
+    }
+    .header img {
+        max-height: 33px;
+    }
+    .heroes-container {
+        width: 340px;
+        padding: 25px 10px;
+    }
+    .hero {
+        font-size: 23px;
+    }
+    .btns {
+        padding: 0 5px;
+    }
+    .btns__button {
+        padding: 10px;
+        font-size: 18px;
+    }
+    .popup__body {
+        width: 350px;
+        padding: 25px 15px;        
+    }
+    .popup__header {
+        font-size: 26px;
+    }
+    .hero-list__subtitle {
+        padding: 0;
+        font-size: 20px;
+    }
+    .hero-list__value {
+        font-size: 20px;
+    }
+    .popup__btn {
+        min-height: 55px;
+    }
+}
+@media (max-width: 420px) {
+    .heroes-container {
+       width: 320px;
+    }    
+    .popup__body {
+        width: 320px;
+        padding: 20px 12px;
+    }    
+    .popup__header {
+        font-size: 25px;
+    }
+    .hero-list__subtitle {
+       font-size: 18px;
+    }
+    .hero-list__value {
+       font-size: 18px;        
+    }    
+}
+@media (max-width: 375px) {
+    .header {
+        margin-bottom: 15px;
+    }
+    .header img {
+        max-height: 27px;
+    }
+    .heroes-container {
+        min-height: 600px;
+        width: 260px;
+        padding: 15px 10px;
+    }  
+    .heroes-container__header {
+        margin-bottom: 10px;
+        font-size: 23px;
+    }
+    .hero-list__item {
+        margin-bottom: 7px;    
+    }
+    .hero {
+        font-size: 23px;
+        padding: 4px 0;
+    }
+    .btns {
+        flex-wrap: wrap;
+    }
+    .btns__button {
+        padding: 8px 7px;
+        min-width: 100px;
+        font-size: 17px;
+    }
+    .pages {
+        order: -1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .popup__body {
+        width: 265px;
+        padding: 15px 12px;
+    }    
+    .popup__header {
+        font-size: 21px;
+        margin-bottom: 10px;
+    }
+    .hero-list__subtitle {
+        font-size: 16px;
+    }
+    .hero-list__value {
+        font-size: 16px;
+    }
+    .films-list {
+        padding-top: 3px;
+    } 
+    .films-list__item {
+        font-size: 16px;
+    }
 }
