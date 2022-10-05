@@ -68,7 +68,7 @@ function getFIlms() {
     fetch(url, init)
         .then((response) => { return response.json() })
         .then((data) => {
-            for (elem of data.results) {
+            for (let elem of data.results) {
                 filmsArr.push(elem.title);
             };
         })
@@ -97,7 +97,7 @@ function getNextHeroes(event) {
 };
 function clearHeroesListAndArr() {
     let heroesArr = document.querySelectorAll('.heroes-list li');
-    for (elem of heroesArr) { elem.remove() };
+    for (let elem of heroesArr) { elem.remove() };
     actualHeroesArr.length = 0;
 };
 function openHeroInfoPopup(event) {
@@ -189,7 +189,7 @@ function setFilms(arg) {
         itemToAdd.innerHTML = `we don't know`;
         filmsList.insertAdjacentElement('beforeend', itemToAdd);
     } else {
-        for (elem of heroFilmsIdArr) {
+        for (let elem of heroFilmsIdArr) {
             let itemToAdd = document.createElement('li');
             itemToAdd.classList.add('films-list__item');
             itemToAdd.innerHTML = `${filmsArr[elem]}`;
@@ -201,7 +201,7 @@ function setFilms(arg) {
 function getHeroFilmsIdArr(arg) {
     let heroFilmsLinks = actualHeroesArr[arg].films;
     let heroFilmsIdArr = new Array();
-    for (elem of heroFilmsLinks) {
+    for (let elem of heroFilmsLinks) {
         let regexFirstIndex = elem.search(/\d/);
         let filmsId = elem.slice(regexFirstIndex, -1) - 1;
         heroFilmsIdArr.push(filmsId);
@@ -210,5 +210,5 @@ function getHeroFilmsIdArr(arg) {
 };
 function clearFilmsList() {
     let filmsListArr = document.querySelectorAll('.films-list li');
-    for (elem of filmsListArr) { elem.remove() };
+    for (let elem of filmsListArr) { elem.remove() };
 };
